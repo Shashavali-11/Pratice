@@ -1,0 +1,62 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day - 3</title>
+  </head>
+  <body>
+    <div id="user-management">
+      <button id="add-user">Add New User</button>
+      <button id="show-users">Show Users</button>
+      <button id="clear-users">Clear Users</button>
+    </div>
+  </body>
+  <script>
+    // Event listeners for buttons
+    let addUserButton = document
+      .getElementById("add-user")
+      .addEventListener("click", addUser);
+    let showUsersButton = document
+      .getElementById("show-users")
+      .addEventListener("click", showUsers);
+    let clearUsersButton = document
+      .getElementById("clear-users")
+      .addEventListener("click", clearUsers);
+
+    let userList = [];
+    let userId = 1;
+
+    // Function to add a new user
+    function addUser() {
+      let userName = prompt("Enter user name : ");
+      let userEmail = prompt("Enter user email : ");
+      if (userName && userEmail) {
+        let newUser = {
+          id: userId++,
+          name: userName.toUpperCase(),
+          email: userEmail,
+        };
+        userList.push(newUser);
+        alert("User added successfully!");
+      } else {
+        alert("Please enter valid details.");
+      }
+    }
+
+    // Function to show users in console
+    function showUsers() {
+      console.log(userList);
+      userList.map((user) => {
+        console.log(`Name : ${user.name}`);
+        // console.log(`Email : ${user.email}`)
+      });
+      alert("Users: " + JSON.stringify(userList));
+    }
+
+    // Function to clear users
+    function clearUsers() {
+      userList = [];
+      alert("All users cleared!");
+    }
+  </script>
+</html>

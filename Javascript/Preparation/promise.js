@@ -52,3 +52,9 @@ fetchUser(101)
     // Output: { id: 101, name: "John Doe" }
   })
   .catch(err => console.error("Error:", err));
+
+
+
+
+
+  

@@ -6,6 +6,7 @@
 //   .catch(error => console.error("Error:", error));
 
 
+
 // new Promise((resolve, reject) => {
 //   resolve(5);
 // })
@@ -20,6 +21,7 @@
 // .then(final => {
 //   console.log("Final result:", final); // Output: 13
 // });
+
 
 
 

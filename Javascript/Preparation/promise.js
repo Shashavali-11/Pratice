@@ -48,13 +48,7 @@ fetchUser(101)
   .then(cleanName)
   .then(formatName)
   .then(user => {
-    console.log("Formatted User:", user); 
-    // Output: { id: 101, name: "John Doe" }
+    console.log("Formatted User:", user);   // Output: { id: 101, name: "John Doe" }
   })
   .catch(err => console.error("Error:", err));
 
-
-
-
-
-  

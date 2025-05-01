@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Checker</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 400px; margin: auto; }
+    input, button { padding: 10px; font-size: 16px; }
+    #result { margin-top: 20px; font-size: 18px; }
+    .error { color: red; }
+    .weather { color: green; }
+  </style>
+</head>
+<body>
+
+  <h2>🌤️ Weather Checker</h2>
+  <input type="text" id="cityInput" placeholder="Enter city name">
+  <button onclick="getWeather()">Check Weather</button>
+
+  <div id="result"></div>
+
+  <script>
+    async function getWeather() {
+      const city = document.getElementById('cityInput').value.trim();
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      // Handle empty input
+      if (!city) {
+        resultDiv.innerHTML = '<div class="error">❌ You must enter a city name!</div>';
+        console.error('Empty city input');
+        return;
+      }
+
+    //   const apiKey = 'YOUR_API_KEY_HERE'; // 🔁 Replace with your API key
+    //   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=hyderabad&units=metric&appid=466ddaa21a8de191e9f608bd11a56acb'
+
+      try {
+        const response = await fetch(url);
+        
+        // Simulated error for invalid city
+        if (!response.ok) {
+          throw new Error(`Server Error: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        // Safely accessing data using optional chaining
+        const temperature = data?.main?.temp;
+        const description = data?.weather?.[0]?.description;
+
+        // Check for incomplete data
+        if (temperature === undefined || description === undefined) {
+          resultDiv.innerHTML = '<div class="error">❌ Weather data is incomplete!</div>';
+          console.warn('Incomplete weather data:', data);
+          return;
+        }
+
+        // ✅ Display weather
+        resultDiv.innerHTML = `
+          <div class="weather">🌡 Temperature: ${temperature}°C</div>
+          <div class="weather">🌥 Description: ${description}</div>
+        `;
+
+      } catch (error) {
+        // ❌ Handle runtime or network errors
+        resultDiv.innerHTML = '<div class="error">❌ Failed to fetch weather data!</div>';
+        console.error('Error fetching weather:', error.message);
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!-- Build a simple simulated search feature that imitates querying a database and logging 
+the result. When the user types into the input box, debounce the search function to 
+prevent unnecessary lookups. Simulate fetching results using Promises and apply 
+promise chaining to clean and format the data before displaying it. Use throttling to 
+log user keystrokes at intervals, and function currying to build a custom logger that 
+prints messages in a structured format (e.g., [TYPE] - message).
+🖥️Sample Output (in console and browser):
+User types “hello”
+(INFO) - Throttled keystroke: h
+(INFO) - Throttled keystroke: he
+(INFO) - Throttled keystroke: hell
+(INFO) - Throttled keystroke: hello
+(INFO) - Debounced search triggered
+After 1 second delay
+Browser displays:
+Results: HELLO, RESULT1, RESULT2 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simulated Search Feature</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      #results {
+        margin-top: 20px;
+        font-size: 18px;
+        /* color: green; */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Simulated Search Box</h2>
+    <input type="text" id="searchInput" placeholder="Type to search..." />
+    <div id="results"></div>
+
+    <script>
+      // 👉 Currying function for structured logger
+      const logger = (type) => (message) => {
+        console.log(`Hi (${type}) - ${message}`); // 
+      };
+
+      const infoLogger = logger("INFO");
+
+      // 👉 Throttle implementation
+      function throttle(func, limit) {
+        let lastCall = 0;
+        return function (...args) {
+          const now = Date.now();
+          if (now - lastCall >= limit) {
+            lastCall = now;
+            func(...args);
+          }
+        };
+      }
+
+      // 👉 Debounce implementation
+      function debounce(func, delay) {
+        let timer;
+        return function (...args) {
+          clearTimeout(timer);
+          timer = setTimeout(() => func(...args), delay);
+        };
+      }
+
+      // 👉 Simulated "fake" fetch function using Promises
+      function fetchResults(query) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve([query, "result1", "result2"]);
+          }, 1000); // Simulate 1-second delay
+        });
+      }
+
+      // 👉 Clean and format results (Promise chaining)
+      function cleanResults(results) {
+        return Promise.resolve(results.map((item) => item.trim()));
+      }
+
+      function formatResults(results) {
+        return Promise.resolve(results.map((item) => item.toUpperCase()));
+      }
+
+      // 👉 Handle search logic
+      function handleSearch(query) {
+        infoLogger("Debounced search triggered");
+
+        fetchResults(query)
+          .then(cleanResults)
+          .then(formatResults)
+          .then((finalResults) => {
+            document.getElementById(
+              "results"
+            ).innerText = `Results: ${finalResults.join(", ")}`;
+          });
+      }
+
+      const inputBox = document.getElementById("searchInput");
+
+      const throttledLogger = throttle((text) => {
+        infoLogger(`Throttled keystroke: ${text}`);
+      }, 300);
+
+      const debouncedSearch = debounce(handleSearch, 500);
+
+      inputBox.addEventListener("input", (e) => {
+        const text = e.target.value;
+        throttledLogger(text);
+        debouncedSearch(text);
+      });
+    </script>
+  </body>
+</html>

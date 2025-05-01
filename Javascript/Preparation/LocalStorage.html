@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+
+
+</head>
+<body>
+
+    <div>
+        <input type="text" id="ip1">
+        <button id="btn">Submit</button>
+        <div id="todoContainer"></div>
+
+    </div>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", () => {
+            let ip1 = document.getElementById("ip1").value;
+            console.log("Input value:", ip1);
+
+            // Store a predefined user in localStorage
+            localStorage.setItem("userName", "Shasha");
+
+            // Retrieve user from localStorage
+            let user = localStorage.getItem("userName");
+
+            if (user === ip1) {
+                // Clear any existing list before adding
+                document.getElementById("todoContainer").innerHTML = "";
+
+                // Create and display a to-do list
+                const todoList = document.createElement("ul");
+
+                const todos = ["Learn JavaScript", "Practice React", "Build Projects"];
+                todos.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = item;
+                    todoList.appendChild(li);
+                });
+
+                document.getElementById("todoContainer").appendChild(todoList);
+            } else {
+                console.log("User not found.");
+                document.getElementById("todoContainer").innerHTML = "User Not Found"; // Clear to-do if no match
+            }
+        });
+    </script>
+    
+</body>
+</html>
+
+
+
+

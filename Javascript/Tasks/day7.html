@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini User Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+    button { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h2 id="greeting"></h2>
+  <button onclick="resetTracker()">Reset</button>
+
+  <script>
+    // ✅ 1. Polyfill for Array.prototype.includes
+    if (!Array.prototype.includes) {
+      Array.prototype.includes = function (item) {
+        for (let i = 0; i < this.length; i++) {
+          if (this[i] === item) return true;
+        }
+        return false;
+      };
+      console.log("Polyfill applied for Array.prototype.includes");
+    }
+
+    // ✅ 2. Prototypal Inheritance - User and Visitor
+    function User(name) {
+      this.name = name;
+    }
+
+    function Visitor(name, visitCount) {
+      User.call(this, name); // inherit User's properties
+      this.visitCount = visitCount;
+    }
+
+    // inherit methods from User
+    Visitor.prototype = Object.create(User.prototype);
+    Visitor.prototype.constructor = Visitor;
+
+    // ✅ 3. Cookie Helpers
+    function setCookie(name, value, days) {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = `${name}=${value}; expires=${expires}; path=/`;
+    }
+
+    function getCookie(name) {
+      return document.cookie.split('; ').find(row => row.startsWith(name + '='))?.split('=')[1];
+    }
+
+    function deleteCookie(name) {
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    }
+
+    // ✅ 4. Get or Prompt for User Name
+    let userName = localStorage.getItem('userName');
+    if (!userName) {
+      userName = prompt("Enter your name:");
+      if (userName) {
+        localStorage.setItem('userName', userName);
+      }
+    }
+
+    // ✅ 5. Get visit count from cookie
+    let visits = parseInt(getCookie('visitCount')) || 0;
+    visits++;
+    setCookie('visitCount', visits, 7); // expires in 7 days
+
+    // ✅ 6. Create Visitor instance
+    const visitor = new Visitor(userName, visits);
+
+    // ✅ 7. Ordinal suffix helper
+    function getOrdinalSuffix(n) {
+      const j = n % 10,
+            k = n % 100;
+      if (j === 1 && k !== 11) return n + "st";
+      if (j === 2 && k !== 12) return n + "nd";
+      if (j === 3 && k !== 13) return n + "rd";
+      return n + "th";
+    }
+
+    // ✅ 8. Display greeting
+    const greeting = document.getElementById('greeting');
+    if (visitor.name) {
+      greeting.innerText = `Hello ${visitor.name}, this is your ${getOrdinalSuffix(visitor.visitCount)} visit!`;
+    }
+
+    // ✅ 9. Reset Logic
+    function resetTracker() {
+      localStorage.removeItem('userName');
+      deleteCookie('visitCount');
+      location.reload(); // refresh the page
+    }
+
+    // ✅ Console Logs for Error Simulation
+    if (!userName) console.warn("⚠️ User did not enter a name.");
+    if (!visits) console.warn("⚠️ Cookie not found. Starting fresh visit count.");
+  </script>
+
+</body>
+</html>

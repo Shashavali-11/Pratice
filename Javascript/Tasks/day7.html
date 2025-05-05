@@ -14,7 +14,7 @@
   <button onclick="resetTracker()">Reset</button>
 
   <script>
-    // ✅ 1. Polyfill for Array.prototype.includes
+    // 1. Polyfill for Array.prototype.includes
     if (!Array.prototype.includes) {
       Array.prototype.includes = function (item) {
         for (let i = 0; i < this.length; i++) {
@@ -25,7 +25,7 @@
       console.log("Polyfill applied for Array.prototype.includes");
     }
 
-    // ✅ 2. Prototypal Inheritance - User and Visitor
+    // 2. Prototypal Inheritance - User and Visitor
     function User(name) {
       this.name = name;
     }
@@ -39,7 +39,7 @@
     Visitor.prototype = Object.create(User.prototype);
     Visitor.prototype.constructor = Visitor;
 
-    // ✅ 3. Cookie Helpers
+    // 3. Cookie Helpers
     function setCookie(name, value, days) {
       const expires = new Date(Date.now() + days * 864e5).toUTCString();
       document.cookie = `${name}=${value}; expires=${expires}; path=/`;
@@ -53,7 +53,7 @@
       document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
     }
 
-    // ✅ 4. Get or Prompt for User Name
+    // 4. Get or Prompt for User Name
     let userName = localStorage.getItem('userName');
     if (!userName) {
       userName = prompt("Enter your name:");
@@ -62,15 +62,15 @@
       }
     }
 
-    // ✅ 5. Get visit count from cookie
+    // 5. Get visit count from cookie
     let visits = parseInt(getCookie('visitCount')) || 0;
     visits++;
     setCookie('visitCount', visits, 7); // expires in 7 days
 
-    // ✅ 6. Create Visitor instance
+    // 6. Create Visitor instance
     const visitor = new Visitor(userName, visits);
 
-    // ✅ 7. Ordinal suffix helper
+    // 7. Ordinal suffix helper
     function getOrdinalSuffix(n) {
       const j = n % 10,
             k = n % 100;
@@ -80,22 +80,22 @@
       return n + "th";
     }
 
-    // ✅ 8. Display greeting
+    // 8. Display greeting
     const greeting = document.getElementById('greeting');
     if (visitor.name) {
       greeting.innerText = `Hello ${visitor.name}, this is your ${getOrdinalSuffix(visitor.visitCount)} visit!`;
     }
 
-    // ✅ 9. Reset Logic
+    // 9. Reset Logic
     function resetTracker() {
       localStorage.removeItem('userName');
       deleteCookie('visitCount');
       location.reload(); // refresh the page
     }
 
-    // ✅ Console Logs for Error Simulation
-    if (!userName) console.warn("⚠️ User did not enter a name.");
-    if (!visits) console.warn("⚠️ Cookie not found. Starting fresh visit count.");
+    // Console Logs for Error Simulation
+    if (!userName) console.warn(" User did not enter a name.");
+    if (!visits) console.warn(" Cookie not found. Starting fresh visit count.");
   </script>
 
 </body>

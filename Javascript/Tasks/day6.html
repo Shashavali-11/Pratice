@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <h2>🌤️ Weather Checker</h2>
+  <h2> Weather Checker</h2>
   <input type="text" id="cityInput" placeholder="Enter city name">
   <button onclick="getWeather()">Check Weather</button>
 
@@ -27,12 +27,12 @@
 
       // Handle empty input
       if (!city) {
-        resultDiv.innerHTML = '<div class="error">❌ You must enter a city name!</div>';
+        resultDiv.innerHTML = '<div class="error"> You must enter a city name!</div>';
         console.error('Empty city input');
         return;
       }
 
-    //   const apiKey = 'YOUR_API_KEY_HERE'; // 🔁 Replace with your API key
+    //   const apiKey = 'YOUR_API_KEY_HERE'; // Replace with your API key
     //   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     const url = 'https://api.openweathermap.org/data/2.5/weather?q=hyderabad&units=metric&appid=466ddaa21a8de191e9f608bd11a56acb'
 
@@ -52,20 +52,20 @@
 
         // Check for incomplete data
         if (temperature === undefined || description === undefined) {
-          resultDiv.innerHTML = '<div class="error">❌ Weather data is incomplete!</div>';
+          resultDiv.innerHTML = '<div class="error"> Weather data is incomplete!</div>';
           console.warn('Incomplete weather data:', data);
           return;
         }
 
-        // ✅ Display weather
+        // Display weather
         resultDiv.innerHTML = `
           <div class="weather">🌡 Temperature: ${temperature}°C</div>
           <div class="weather">🌥 Description: ${description}</div>
         `;
 
       } catch (error) {
-        // ❌ Handle runtime or network errors
-        resultDiv.innerHTML = '<div class="error">❌ Failed to fetch weather data!</div>';
+        // Handle runtime or network errors
+        resultDiv.innerHTML = '<div class="error"> Failed to fetch weather data!</div>';
         console.error('Error fetching weather:', error.message);
       }
     }

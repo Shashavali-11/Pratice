@@ -6,10 +6,11 @@ function App() {
   const [showProfile, setShowProfile] = useState(true);
 
   const user = {
-    name: 'Jane Doe',
-    age: 28,
-    location: 'New York City',
-    avatar: 'https://randomuser.me/api/portraits/women/44.jpg'
+    name: 'Hardik',
+    age: 29,
+    location: 'India',
+    avatar: 'https://static.toiimg.com/thumb/msid-117942315,imgsize-36816,width-400,resizemode-4/117942315.jpg'
+    // avatar:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Hardik_Pandya_in_PMO_New_Delhi.jpg'
   };
 
   const toggleProfile = () => {
@@ -20,7 +21,7 @@ function App() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <button
         onClick={toggleProfile}
-        className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        className="mb-4 px-4 py-2 bg-blue-1600 text-white rounded hover:bg-blue-700"
       >
         {showProfile ? 'Hide Profile' : 'Show Profile'}
       </button><br /> <br />
@@ -29,3 +30,5 @@ function App() {
     </div>
   );
 }
+
+export default App;

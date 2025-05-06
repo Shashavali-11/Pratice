@@ -6,11 +6,11 @@ function App() {
   const [showProfile, setShowProfile] = useState(true);
 
   const user = {
-    name: 'Hardik',
+    name: 'Hardik Pandya',
     age: 29,
     location: 'India',
-    avatar: 'https://static.toiimg.com/thumb/msid-117942315,imgsize-36816,width-400,resizemode-4/117942315.jpg'
-    // avatar:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Hardik_Pandya_in_PMO_New_Delhi.jpg'
+    // avatar: 'https://static.toiimg.com/thumb/msid-117942315,imgsize-36816,width-400,resizemode-4/117942315.jpg'
+    avatar:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Hardik_Pandya_in_PMO_New_Delhi.jpg'
   };
 
   const toggleProfile = () => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import UserCard from './components/UserCard';
 
+
 function App() {
   const [showProfile, setShowProfile] = useState(true);
 
@@ -22,11 +23,9 @@ function App() {
         className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
       >
         {showProfile ? 'Hide Profile' : 'Show Profile'}
-      </button>
+      </button><br /> <br />
 
       {showProfile && <UserCard {...user} />}
     </div>
   );
 }
-
-export default App;

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        background: linear-gradient(to right, #8360c3, #2ebf91);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 30px 25px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 500px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      input[type="text"] {
+        width: calc(100% - 110px);
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+        margin-right: 10px;
+      }
+
+      button {
+        padding: 10px 15px;
+        background-color: #2ebf91;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #24a17c;
+      }
+
+      ul {
+        list-style: none;
+        margin-top: 20px;
+      }
+
+      li {
+        background-color: #f5f5f5;
+        margin-bottom: 10px;
+        padding: 12px 15px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .actions button {
+        background-color: #ff6b6b;
+        margin-left: 8px;
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 6px;
+      }
+
+      .actions button:first-child {
+        background-color: #4d94ff;
+      }
+
+      .actions button:hover {
+        opacity: 0.9;
+      }
+
+      @media (max-width: 500px) {
+        input[type="text"] {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        button {
+          width: 100%;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+
+        .actions button {
+          margin-top: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>To-Do List</h1>
+      <input type="text" id="taskInput" placeholder="Add a new task..." />
+      <button onclick="addTask()">Add Task</button>
+      <ul id="taskList"></ul>
+      <button id="logout">Log_Out</button>
+    </div>
+    <script>
+      logout = document
+        .getElementById("logout")
+        .addEventListener("click", () => {
+          event.preventDefault();
+          window.location.href = "index.html";
+        });
+
+      let tasks = [];
+
+      window.onload = () => {
+        const storedTasks = localStorage.getItem("tasks");
+        if (storedTasks) {
+          tasks = JSON.parse(storedTasks);
+          displayTasks()
+        }
+      };
+
+      let saveTasks = () => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      };
+
+      let addTask = () => {
+        const input = document.getElementById("taskInput");
+        const taskText = input.value.trim();
+        if (taskText === "") return alert("Please enter a task...!");
+        tasks.push(taskText);
+        input.value = "";
+        saveTasks();
+        displayTasks();
+      };
+
+      let displayTasks = () => {
+        const taskList = document.getElementById("taskList");
+        taskList.innerHTML = "";
+
+        tasks.map((task, index) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+            <span>${task}</span>
+            <div class="actions" >
+              <button onclick = "editTask(${index})"> Edit </button>
+              <button onclick = "deleteTask(${index})"> Delete </button>
+            </div>            
+          `;
+          taskList.appendChild(li);
+        });
+      };
+
+      let deleteTask = (index) => {
+        tasks.splice(index, 1);
+        saveTasks();
+        displayTasks();
+      };
+
+      let editTask = (index) => {
+        const newTask = prompt("Edit task : ", tasks[index]);
+        if (newTask !== null && newTask.trim() !== "") {
+          tasks[index] = newTask.trim();
+          saveTasks();
+          displayTasks();
+        }
+      };
+    </script>
+  </body>
+</html>

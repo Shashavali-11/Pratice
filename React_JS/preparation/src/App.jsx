@@ -3,6 +3,8 @@ import Form from "./components/Form"
 import ToDo from "./components/ToDo"
 import Password from "./components/Password"
 import DynamicFields from "./components/DynamicFields"
+import FocusInput from "./components/FocusInput"
+
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -17,7 +19,13 @@ function App() {
 
       {/* <Password /> */}
 
-      <DynamicFields />
+      {/* <DynamicFields /> */}
+
+      <FocusInput />
+
+      
+
+      
 
       
 

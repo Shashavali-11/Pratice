@@ -5,6 +5,9 @@ import Password from "./components/Password"
 import DynamicFields from "./components/DynamicFields"
 import FocusInput from "./components/FocusInput"
 
+import Usestate from "./components/Day3/Usestate"
+import Useeffect from "./components/Day3/Useeffect"
+
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -21,8 +24,11 @@ function App() {
 
       {/* <DynamicFields /> */}
 
-      <FocusInput />
+      {/* <FocusInput /> */}
 
+      {/* <Usestate /> */}
+
+      <Useeffect />
       
 
       

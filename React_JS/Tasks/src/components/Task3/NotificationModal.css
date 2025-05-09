@@ -1,0 +1,38 @@
+/* Modal overlay */
+.modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Optional dark mode styling */
+.dark .modal {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Animation: fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Close button */
+.modal button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

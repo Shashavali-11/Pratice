@@ -3,7 +3,7 @@ import NotificationModal from './NotificationModal';
 import ControlledForm from './ControlledForm';
 import UncontrolledForm from './UncontrolledForm';
 import ErrorBoundary from './ErrorBoundary';
-import ThemeToggle from './ThemeToggle';
+// import ThemeToggle from './ThemeToggle';
 import { ThemeProvider } from './context/ThemeContext';
 
 function Task_3() {
@@ -12,7 +12,7 @@ function Task_3() {
 
   return (
     <ThemeProvider>
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
        
       <button onClick={() => setShowModal(true)}>Show Notification</button>
 <br /><br />

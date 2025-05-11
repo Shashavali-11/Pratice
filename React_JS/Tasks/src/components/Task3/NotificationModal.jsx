@@ -7,7 +7,7 @@ const modalRoot = document.getElementById('modal-root');
 export default function NotificationModal({ onClose }) {
   useEffect(() => {
     console.log("Modal Opened");
-    const timer = setTimeout(() => onClose(), 5000);
+    const timer = setTimeout(() => onClose(), 3000);
     return () => clearTimeout(timer);
   }, [onClose]);
 
@@ -15,6 +15,7 @@ export default function NotificationModal({ onClose }) {
 
   return ReactDOM.createPortal(
     <div className="modal">
+      {/* <input type="checkbox" id="modal-checkbox" /> Select me */}
       <p>This is a notification modal!</p>
       <button onClick={onClose}>Close</button>
     </div>,

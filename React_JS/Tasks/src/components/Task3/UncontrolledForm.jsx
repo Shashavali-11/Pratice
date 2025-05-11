@@ -10,7 +10,7 @@ export default function UncontrolledForm() {
       alert(`Username: ${usernameRef.current.value}, Password: ${passwordRef.current.value}`);
     }}>
       <h3>Uncontrolled Form</h3>
-      <input ref={usernameRef} placeholder="Username" />
+      <input ref={usernameRef} placeholder="Username" />&nbsp;&nbsp;&nbsp;&nbsp;
       <input ref={passwordRef} placeholder="Password" type="password" />
       <button type="submit">Submit</button>
     </form>

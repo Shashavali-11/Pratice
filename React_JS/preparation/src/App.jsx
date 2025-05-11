@@ -7,6 +7,10 @@ import FocusInput from "./components/FocusInput"
 
 import Usestate from "./components/Day3/Usestate"
 import Useeffect from "./components/Day3/Useeffect"
+import Theme from "./components/Day3/Theme Changer/Them"
+
+
+import Axios from "./components/Day5/Axios"
 
 
 function App() {
@@ -28,9 +32,11 @@ function App() {
 
       {/* <Usestate /> */}
 
-      <Useeffect />
-      
+      {/* <Useeffect /> */}
 
+      {/* <Theme /> */}
+      
+      <Axios />
       
 
       

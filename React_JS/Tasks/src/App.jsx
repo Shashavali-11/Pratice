@@ -5,8 +5,10 @@ import Task_3 from "./components/Task3/Task_3";
 import Task_4 from "./components/Task4/Task_4";
 import Task_5 from "./components/Task5/Task_5";
 import Task_6 from "./components/Task6/Task_6";
-import store from "./components/Task6/Store";
+// import store from "./components/Task6/Store";
 import { Provider } from "react-redux";
+import Ssr from "./components/Task5/Ssr";
+
 
 const App = () => {
   return (
@@ -19,31 +21,25 @@ const App = () => {
 
       {/* <Task_4 /> */}
 
-      {/* <Task_5 /> */}
+      {/* Not Completed */}
+      <Task_5 />  
+      {/* <Ssr /> */}
 
-      <Provider store={store}>
+
+
+      {/* <Provider store={store}>
         <Task_6 />
-      </Provider>
+      </Provider> */}
 
-      {/* <Task_6 /> */}
+    
+
+
+
+      
     </>
   );
 };
 
 export default App;
 
-// // src/main.jsx or src/index.jsx
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// import App from "./App";
-// import { Provider } from "react-redux";
-// import store from "./components/Task6/Store"; // Make sure this path is correct
-// import Task_6 from "./components/Task6/Task_6";
 
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <Provider store={store}>
-//     {/* <App /> */}
-//     <Task_6 />
-
-//   </Provider>
-// );

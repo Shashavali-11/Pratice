@@ -8,7 +8,7 @@ const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
   return (
-    <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+    <div style={{ border: '1px solid black', padding: '10px', margin: '10px', borderRadius: '10px' }}>
       <h4>{item.name}</h4>
       <p>Price: ${item.price}</p>
       <p>

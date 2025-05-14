@@ -16,8 +16,8 @@ const Cart = () => {
         <>
           {items.map(item => <CartItem key={item.id} item={item} />)}
           <h3>Total Amount: ${totalAmount}</h3>
-          <button onClick={() => dispatch(clearCart())}>Clear Cart</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button>Checkout</button>
+          <button style={{ marginLeft:'100px' }} onClick={() => dispatch(clearCart())}>Clear Cart</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {/* <button>Checkout</button> */}
         </>
       )}
     </div>

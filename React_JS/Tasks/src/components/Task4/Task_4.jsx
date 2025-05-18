@@ -153,6 +153,7 @@ export default function Task_4() {
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState('');
   const inputRef = useRef();
+  
 
   useEffect(() => {
     inputRef.current.focus();
@@ -166,6 +167,17 @@ export default function Task_4() {
       inputRef.current.focus();
     }
   };
+
+//   const handleAddTodo = () => {
+//   const value = inputRef.current.value.trim();
+//   if (value) {
+//     addTodo(value);
+//     setCount(prevCount => prevCount + 1);  // Increment count
+//     inputRef.current.value = '';
+//     inputRef.current.focus();
+//   }
+// };
+
 
   const handleEdit = (id, currentTitle) => {
     setEditingId(id);
@@ -213,7 +225,7 @@ export default function Task_4() {
       <button onClick={handleAddTodo}>Add Todo</button>
 
       <div style={{ margin: '1rem 0' }}>
-        <button onClick={() => setFilter(FILTERS.ALL)}>Show All</button>&nbsp;&nbsp;&nbsp;
+        <button onClick={() => setFilter(FILTERS.ALL)}>Show All  </button>&nbsp;&nbsp;&nbsp;
         <button onClick={() => setFilter(FILTERS.COMPLETED)}>Completed</button>&nbsp;&nbsp;&nbsp;
         <button onClick={() => setFilter(FILTERS.PENDING)}>Pending</button>
       </div>

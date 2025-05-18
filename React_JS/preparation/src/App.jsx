@@ -12,6 +12,8 @@ import Theme from "./components/Day3/Theme Changer/Them"
 
 import Axios from "./components/Day5/Axios"
 
+import Login from "./components/Authentication/Login"
+
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -36,7 +38,11 @@ function App() {
 
       {/* <Theme /> */}
       
-      <Axios />
+      {/* Filter Products Data according to Category  */}
+      {/* <Axios />   */}
+      
+      {/* <Login /> */}
+
       
 
       

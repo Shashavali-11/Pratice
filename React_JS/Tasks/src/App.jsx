@@ -5,7 +5,7 @@ import Task_3 from "./components/Task3/Task_3";
 import Task_4 from "./components/Task4/Task_4";
 import Task_5 from "./components/Task5/Task_5";
 import Task_6 from "./components/Task6/Task_6";
-// import store from "./components/Task6/Store";
+import store from "./components/Task6/Store";
 import { Provider } from "react-redux";
 import Ssr from "./components/Task5/Ssr";
 
@@ -21,15 +21,12 @@ const App = () => {
 
       {/* <Task_4 /> */}
 
-      {/* Not Completed */}
-      <Task_5 />  
-      {/* <Ssr /> */}
+      {/* <Task_5 />   */}
 
 
-
-      {/* <Provider store={store}>
+      <Provider store={store}>
         <Task_6 />
-      </Provider> */}
+      </Provider>
 
     
 

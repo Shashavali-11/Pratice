@@ -11,13 +11,13 @@ export default function Ssr({ users }) {
 }
 
 // Server Side Rendering (SSR)
-export async function getServerSideProps() {
+// export async function a() {
 
-  const url = 'https://jsonplaceholder.typicode.com/users'
-  const res = await fetch(url);
-  const users = await res.json();
+//   const url = 'https://jsonplaceholder.typicode.com/users'
+//   const res = await fetch(url);
+//   const users = await res.json();
 
-  return {
-    props: { users },
-  };
-}
+//   return {
+//     props: { users },
+//   };
+// }
